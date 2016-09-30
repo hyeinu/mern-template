@@ -7,6 +7,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { MuiThemeProvider } from 'material-ui';
 
 import Layout from './components/Layout.jsx';
+import Splash from './components/Splash.jsx';
+import NotFound from './components/NotFound.jsx';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // import { lightBlue900, yellow50, yellow600 } from 'material-ui/styles/colors';
@@ -29,9 +31,9 @@ render(
     <MuiThemeProvider muiTheme={muiTheme}>
       <Router history={browserHistory}>
         <Route path="/" component={Layout} >
-          {/* <IndexRoute component={} /> */}
+          <IndexRoute component={Splash} />
         </Route>
-        {/* <Route path="*" component={} /> */}
+        <Route path="*" component={NotFound} />
       </Router>
     </MuiThemeProvider>
   </Provider>,
