@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable arrow-parens */
+
 // CONSTANTS
 const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/DB_NAME';
@@ -16,7 +19,7 @@ mongoose.Promise = global.Promise;
 
 // DB CONNECT
 require('mongoose').connect(MONGO_URI, err => {
-  if(err) throw err;
+  if (err) throw err;
   console.log(`MongoDB connected to ${MONGO_URI}`);
 });
 
@@ -39,10 +42,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {httpOnly: false}
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { httpOnly: false }
 }));
 
 
@@ -53,23 +56,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', require('./routes/api'));
 
 app.get('*', (req, res) => {
-  let indexPath = path.join(__dirname, '../index.html');
+  const indexPath = path.join(__dirname, '../index.html');
   res.sendFile(indexPath);
 });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handlers
+// ERROR HANDLING
 
-// development error handler
-// will print stacktrace
+// Development error Handler
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res) => {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -78,9 +80,8 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+// Production error Handler
+app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -90,7 +91,7 @@ app.use(function(err, req, res, next) {
 
 // SERVER LISTEN
 app.listen(PORT, err => {
-  if(err) throw err;
-
+  if (err) throw err;
   console.log(`Server listening at http://localhost:${PORT}`);
-});
+}
+);

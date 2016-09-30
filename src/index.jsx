@@ -6,24 +6,24 @@ import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { MuiThemeProvider } from 'material-ui';
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { lightBlue900 } from 'material-ui/styles/colors';
+
 import Layout from './components/Layout.jsx';
 import Splash from './components/Splash.jsx';
 import NotFound from './components/NotFound.jsx';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import { lightBlue900, yellow50, yellow600 } from 'material-ui/styles/colors';
-
-import './style.css'
+import './style.css';
 import store from './store';
 
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
-	fontFamily: 'Roboto, sans-serif',
+  fontFamily: 'Roboto, sans-serif',
   palette: {
-    // primary1Color: lightBlue900,
+    primary1Color: lightBlue900
     // accentColor: yellow50
-  },
+  }
 });
 
 render(
